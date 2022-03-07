@@ -8,7 +8,9 @@ window.onload = function(){
 
 
 function  petitionApi(){
-const petition = fetch('https://api.agify.io?name=michael');
+
+const url = 'https://api.agify.io?name=michael'
+const petition = fetch(`${url}`);
 
 
 petition.then(resp => {
