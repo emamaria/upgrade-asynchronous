@@ -3,6 +3,7 @@
 window.onload = function(){
 
     petitionApi()
+    secondPetition()
 
 }
 
@@ -23,4 +24,31 @@ petition.then(resp => {
 
 
 //2.1
+
+function secondPetition(){
+
+   
+   let button = document.querySelector("button")
+
+
+   button.addEventListener("click", function(){
+
+    let inputValue = document.querySelector("input").value
+
+    fetch(`https://api.nationalize.io?name=${inputValue}`).then( resp => {
+        resp.json().then(console.log)
+    }).catch(console.log)
+
+
+
+
+   })
+
+
+
+}
+
+
+
+
 
