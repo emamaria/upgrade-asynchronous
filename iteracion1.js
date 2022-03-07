@@ -1,7 +1,24 @@
+//1.1
 
-const peticion = fetch('https://api.agify.io?name=michael');
+window.onload = function(){
+
+    petitionApi()
+
+}
 
 
-peticion.then(resp => {
+function  petitionApi(){
+const petition = fetch('https://api.agify.io?name=michael');
+
+
+petition.then(resp => {
       resp.json().then(console.log)
 }).catch(console.log)
+
+
+}
+
+
+
+//2.1
+
