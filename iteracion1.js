@@ -4,7 +4,9 @@ window.onload = function(){
 
     petitionApi()
     // secondPetition()
-    thirdPetition()
+    // thirdPetition()
+
+    fourthPetition() 
 
 }
 
@@ -61,7 +63,7 @@ function thirdPetition(){
  
      fetch(`https://api.nationalize.io?name=${inputValue}`).then( resp => {
          resp.json().then(({name, country}) => {
-
+              console.log(name, country);
            let textArr = country.map( (elem, index) => {
 
               if(index == 0){
@@ -98,6 +100,94 @@ function thirdPetition(){
  }
 
 
+//2.4  
+
+
+function fourthPetition(){
+
+   
+  let button = document.querySelector("button")
+
+
+  button.addEventListener("click", function(){
+
+   let inputValue = document.querySelector("input").value
+
+   fetch(`https://api.nationalize.io?name=${inputValue}`).then( resp => {
+       resp.json().then(({name, country}) => {
+            console.log(name, country);
+         let textArr = country.map( (elem, index) => {
+
+            if(index == 0){
+              return `El nombre ${name} tiene un ${elem.probability*100}  porciento de ser ${elem.country_id}`
+            }else{
+              return `, un ${elem.probability*100} porciento de ser ${elem.country_id}` 
+            }
+              
+
+         } )
+        
+         let p = document.createElement("p")
+             
+         for( let i = 0; i < textArr.length; i++){
+        
+          p.innerHTML += textArr[i]
+       
+          
+
+
+        }
+
+        p.className = `deleteP`
+
+        let button = document.createElement("button");
+
+        let buttonContent = document.createTextNode("X");
+
+        button.className = `deleteButton`
+
+        button.appendChild(buttonContent);
+
+        p.appendChild(button)
+
+
+        
+
+         p.innerHTML += "."
+
+        document.body.appendChild(p)
+
+        
+          let deleteBoton = document.querySelectorAll(".deleteButton")
+         
+
+         for(let i  = 0; i < deleteBoton.length; i++){
+          deleteBoton[i].addEventListener("click", function(){
+             
+
+            let toDeleteNode = this.parentElement
+
+            toDeleteNode.remove()
+               
+              
+             
+          })
+         }
+
+    
+    
+     
+       })
+
+
+   }).catch(err => err)
+
+
+
+
+  })
+
+}
 
 
 
